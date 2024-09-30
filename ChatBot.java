@@ -15,22 +15,37 @@ public class ChatBot{
   */
   public String getResponse(String statement){
     String response = "";
-    if(statement.indexOf("no")>=0){
+    statement.trim();
+
+    findKeyword(statement,"no",0);
+    if(findKeyword(statement,"no",0)>=0){
       response = "Why so negative?";
-    }else if(statement.indexOf("mother")>0 ||  statement.indexOf("father")>0 || statement.indexOf("sister")>0 || statement.indexOf("brother")>0){
+    }else if(findKeyword(statement,"mother",0)>=0 ||  findKeyword(statement,"father",0)>=0|| findKeyword(statement,"sister",0)>=0 || findKeyword(statement,"brother",0)>=0){
       response = "Tell me more about your family.";
+    }else if(findKeyword(statement,"dog",0)>=0||findKeyword(statement,"cat",0)>=0){
+      response = "Tell me more about your pets.";
+    }else if(findKeyword(statement,"zeller",0)>=0){
+      response = "Oh, I had them! Very good teacher";
+    }else if(findKeyword(statement,"",0)>=0){
+      response = "Please enter a response";
+    }else if(findKeyword(statement,"pizza",0)>=0){
+      response = "Yummy thats my favorite.";
+    }else if(findKeyword(statement,"strong",0)>=0){
+      response = "I'm stronger though.";
+    }else if(findKeyword(statement,"overwatch",0)>=0){
+      response = "Delete that abominable trash from this earth NOWWW!";
     }else{
       response = getRandomResponse();
     }
     return response;
   }
-
+ 
   /*
   * Pick a default response to use if nothing else fits.
   * @return a non-commital string
   */
   private String getRandomResponse(){
-    int numberOfResponses = 4;
+    int numberOfResponses = 6;
     double r = Math.random();
     int whichResponse = (int)(r*numberOfResponses);
     String response = "";
@@ -43,6 +58,10 @@ public class ChatBot{
       response = "Do you really think so?";
     }else if(whichResponse==3){
       response = "You don't say.";
+    }else if(whichResponse==4){
+      response = "BOOOOOOOO";
+    }else if(whichResponse==5){
+      response = "Say something cooler";
     }
     return response;
   }
@@ -56,7 +75,7 @@ public class ChatBot{
 	 * @param statement
 	 *            the string to search
 	 * @param goal
-	 *            the string to search for
+	 *            the string to search forva
 	 * @param startPos
 	 *            the character of the string to begin the
 	 *            search at

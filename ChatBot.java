@@ -34,10 +34,18 @@ public class ChatBot{
       response = "I'm stronger though.";
     }else if(findKeyword(statement,"overwatch",0)>=0){
       response = "Delete that abominable trash from this earth NOWWW!";
+    }else if(findKeyword(statement,"I want to",0)>=0){
+      response = transformIWantToStatement(statement);
+    }else if(findKeyword(statement,"you",0)>=0&&findKeyword(statement,"me",3)>=0){
+      response = transformYouMeStatement(statement);
+    }else if(findKeyword(statement,"I want",0)>=0){
+      response = transformIWantStatement();
+    }else if(findKeyword(statement,"I",0)>=0&&findKeyword(statement,"you",0)>=0){
+      response = transformIYouStatement();
     }else{
       response = getRandomResponse();
     }
-    return response;
+    
   }
  
   /*
@@ -62,8 +70,9 @@ public class ChatBot{
       response = "BOOOOOOOO";
     }else if(whichResponse==5){
       response = "Say something cooler";
+    }else{
+      return response = getRandomResponse();
     }
-    return response;
   }
 
   /*
@@ -163,4 +172,29 @@ public class ChatBot{
 		String restOfStatement = statement.substring(psnOfYou + 3, psnOfMe).trim();
 		return "What makes you think that I " + restOfStatement + " you?";
 	}
+  private String transformIWantStatement(string statement){
+    statement = statement.trim();
+		String lastChar = statement.substring(statement.length() - 1);
+		if (lastChar.equals(".")){
+			statement = statement.substring(0, statement.length() - 1);
+		}
+		int psn = findKeyword(statement, "I want", 0);
+		String restOfStatement = statement.substring(psn + 6).trim();
+		return "Would you really be happy if you had "+ restOfStatement + "?";
+  }
+  private String transformIYouStatement(string statement){
+    statement = statement.trim();
+		String lastChar = statement.substring(statement.length() - 1);
+		if (lastChar.equals(".")){
+			statement = statement.substring(0, statement.length() - 1);
+		}
+
+		int psnOfYou = findKeyword (statement, "I", 0);
+		int psnOfMe = findKeyword (statement,"you", psnOfYou + 1);
+
+		String restOfStatement = statement.substring(psnOfYou + 1, psnOfMe).trim();
+		return "Why do you " + restOfStatement + " me?";
+  }
+
 }
+

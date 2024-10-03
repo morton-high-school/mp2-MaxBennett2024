@@ -16,8 +16,6 @@ public class ChatBot{
   public String getResponse(String statement){
     String response = "";
     statement.trim();
-
-    findKeyword(statement,"no",0);
     if(findKeyword(statement,"no",0)>=0){
       response = "Why so negative?";
     }else if(findKeyword(statement,"mother",0)>=0 ||  findKeyword(statement,"father",0)>=0|| findKeyword(statement,"sister",0)>=0 || findKeyword(statement,"brother",0)>=0){
@@ -70,9 +68,8 @@ public class ChatBot{
       response = "BOOOOOOOO";
     }else if(whichResponse==5){
       response = "Say something cooler";
-    }else{
-      return response = getRandomResponse();
     }
+    return response;
   }
 
   /*

@@ -33,7 +33,7 @@ public class ChatBot{
     }else if(findKeyword(statement,"strong",0)>-1){
       response = "I'm stronger though.";
     }else if(findKeyword(statement,"overwatch",0)>-1){
-      response = "Delete that abominable trash from this earth NOWWW!";
+      response = "Delete that abominable trash from this earth NOWWW! Take a walk stinky man!!!";
     }else if(findKeyword(statement,"I want to",0)>-1){
       response = transformIWantToStatement(statement);
     }else if(findKeyword(statement,"you",0)>-1 && findKeyword(statement,"me",3)>-1){

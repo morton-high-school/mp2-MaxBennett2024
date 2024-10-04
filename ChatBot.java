@@ -24,7 +24,7 @@ public class ChatBot{
       response = "Tell me more about your pets.";
     }else if(findKeyword(statement,"zeller",0)>=0){
       response = "Oh, I had them! Very good teacher";
-    }else if(findKeyword(statement,"",0)>=0){
+    }else if(statement.trim().isEmpty()){
       response = "Please enter a response";
     }else if(findKeyword(statement,"pizza",0)>=0){
       response = "Yummy thats my favorite.";
@@ -37,13 +37,13 @@ public class ChatBot{
     }else if(findKeyword(statement,"you",0)>=0&&findKeyword(statement,"me",3)>=0){
       response = transformYouMeStatement(statement);
     }else if(findKeyword(statement,"I want",0)>=0){
-      response = transformIWantStatement();
+      response = transformIWantStatement(statement);
     }else if(findKeyword(statement,"I",0)>=0&&findKeyword(statement,"you",0)>=0){
-      response = transformIYouStatement();
+      response = transformIYouStatement(statement);
     }else{
       response = getRandomResponse();
     }
-    
+    return response;
   }
  
   /*
@@ -169,7 +169,8 @@ public class ChatBot{
 		String restOfStatement = statement.substring(psnOfYou + 3, psnOfMe).trim();
 		return "What makes you think that I " + restOfStatement + " you?";
 	}
-  private String transformIWantStatement(string statement){
+  
+  private String transformIWantStatement(String statement){
     statement = statement.trim();
 		String lastChar = statement.substring(statement.length() - 1);
 		if (lastChar.equals(".")){
@@ -179,7 +180,7 @@ public class ChatBot{
 		String restOfStatement = statement.substring(psn + 6).trim();
 		return "Would you really be happy if you had "+ restOfStatement + "?";
   }
-  private String transformIYouStatement(string statement){
+  private String transformIYouStatement(String statement){
     statement = statement.trim();
 		String lastChar = statement.substring(statement.length() - 1);
 		if (lastChar.equals(".")){

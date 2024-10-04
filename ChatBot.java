@@ -15,30 +15,32 @@ public class ChatBot{
   */
   public String getResponse(String statement){
     String response = "";
-    statement.trim();
-    if(findKeyword(statement,"no",0)>=0){
+    statement=statement.trim();
+
+    if(findKeyword(statement,"no",0)>-1){
+
       response = "Why so negative?";
-    }else if(findKeyword(statement,"mother",0)>=0 ||  findKeyword(statement,"father",0)>=0|| findKeyword(statement,"sister",0)>=0 || findKeyword(statement,"brother",0)>=0){
+    }else if(findKeyword(statement,"mother",0)>-1 ||  findKeyword(statement,"father",0)>-1|| findKeyword(statement,"sister",0)>-1 || findKeyword(statement,"brother",0)>-1){
       response = "Tell me more about your family.";
-    }else if(findKeyword(statement,"dog",0)>=0||findKeyword(statement,"cat",0)>=0){
+    }else if(findKeyword(statement,"dog",0)>-1 || findKeyword(statement,"cat",0)>-1){
       response = "Tell me more about your pets.";
-    }else if(findKeyword(statement,"zeller",0)>=0){
+    }else if(findKeyword(statement,"zeller",0)>-1){
       response = "Oh, I had them! Very good teacher";
     }else if(statement.trim().isEmpty()){
-      response = "Please enter a response";
-    }else if(findKeyword(statement,"pizza",0)>=0){
+       response = "Please enter a response";
+    }else if(findKeyword(statement,"pizza",0)>-1){
       response = "Yummy thats my favorite.";
-    }else if(findKeyword(statement,"strong",0)>=0){
+    }else if(findKeyword(statement,"strong",0)>-1){
       response = "I'm stronger though.";
-    }else if(findKeyword(statement,"overwatch",0)>=0){
+    }else if(findKeyword(statement,"overwatch",0)>-1){
       response = "Delete that abominable trash from this earth NOWWW!";
-    }else if(findKeyword(statement,"I want to",0)>=0){
+    }else if(findKeyword(statement,"I want to",0)>-1){
       response = transformIWantToStatement(statement);
-    }else if(findKeyword(statement,"you",0)>=0&&findKeyword(statement,"me",3)>=0){
+    }else if(findKeyword(statement,"you",0)>-1 && findKeyword(statement,"me",3)>-1){
       response = transformYouMeStatement(statement);
-    }else if(findKeyword(statement,"I want",0)>=0){
+    }else if(findKeyword(statement,"I want",0)>-1){
       response = transformIWantStatement(statement);
-    }else if(findKeyword(statement,"I",0)>=0&&findKeyword(statement,"you",0)>=0){
+    }else if(findKeyword(statement,"I",0)>-1 && findKeyword(statement,"you",0)>-1){
       response = transformIYouStatement(statement);
     }else{
       response = getRandomResponse();
@@ -180,6 +182,7 @@ public class ChatBot{
 		String restOfStatement = statement.substring(psn + 6).trim();
 		return "Would you really be happy if you had "+ restOfStatement + "?";
   }
+  
   private String transformIYouStatement(String statement){
     statement = statement.trim();
 		String lastChar = statement.substring(statement.length() - 1);
